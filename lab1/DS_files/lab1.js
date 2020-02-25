@@ -6,7 +6,7 @@ const G_COUNT = 12;
 let countV = 0;
 let graph = [];
 let vector = [];
-const RADIUS = 170;
+const RADIUS = 190;
 const RADIUS_GR = 20;
  let arrN =  [
   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1 ] ,
@@ -47,11 +47,6 @@ class Vector
 		this.num = num;
 		this.x = x2 - x1;
 		this.y = y2 - y1;
-		this.x3 = x1 + this.x / ((this.length()) / RADIUS_GR);
-	    this.y3 = y1 + this.y / ((this.length()) / RADIUS_GR);
-		this.x4 = x2 - this.x / ((this.length()) / RADIUS_GR);
-	    this.y4 = y2 - this.y / ((this.length()) / RADIUS_GR);
-			
 	}
 
 	add(secVector) 
@@ -89,16 +84,16 @@ class Vector
    function drawV(vec) 
    {
 ctx.beginPath();
-    ctx.moveTo(vec.x3,vec.y3);
-    ctx.lineTo(vec.x4,vec.y4);
+    ctx.moveTo(vec.x1,vec.y1);
+    ctx.lineTo(vec.x2,vec.y2);
     ctx.lineWidth = 2;    
-    ctx.strokeStyle = '#ff0000';
+    ctx.strokeStyle = '#ffffff';
     ctx.stroke();
 
-    // ctx.fillStyle = 'black' ;
-    // ctx.textAlign = "center";
-    // ctx.font = "18px serif";
-    // ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
+    ctx.fillStyle = 'black' ;
+    ctx.textAlign = "center";
+    ctx.font = "18px serif";
+    ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
 
 }
 
@@ -125,11 +120,6 @@ countV++;
 }
 }
 }
-
 createAndDrawG();
 createAndDrawV();
-vector[50] = new Vector(canvas.width,graph[10].y,graph[10].x,graph[10].y,22)
-drawV(vector[50]);
-let newAlfa = (vector[50].x * vector[10].x + vector[50].y * vector[10].y)/(vector[50].length() * vector[10].length());
-
-console.log(newAlfa);
+console.log(vector[1].length());
