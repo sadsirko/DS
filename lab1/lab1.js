@@ -6,8 +6,10 @@ let countV = 0;
 let graph = [];
 let vector = [];
 const RADIUS = 170;
-const RADIUS_GR = 20;
+const RADIUS_GR = 23;
 const ELIPSE_WIDTH = 20;
+const R_OF_OUT_CIRCLE = 10;
+
  let arrN =  [
   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1 ] ,
   [ 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0 ] ,
@@ -22,7 +24,7 @@ const ELIPSE_WIDTH = 20;
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
   [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  
   ];
-
+let arrUn = arrN.slice();
 
 class GraphClass
  {
@@ -32,6 +34,9 @@ class GraphClass
 		this.x = canvas.width / 2 + RADIUS * Math.cos(this.alfa);
 		this.y = canvas.height / 2 + RADIUS * Math.sin(this.alfa);
 		this.num = num;
+		this.x2 = canvas.width / 2 + (RADIUS + R_OF_OUT_CIRCLE + RADIUS_GR) * Math.cos(this.alfa) ;
+		this.y2 = canvas.height / 2 + (RADIUS + R_OF_OUT_CIRCLE + RADIUS_GR) * Math.sin(this.alfa);
+		
 	}
 }
 
@@ -91,6 +96,7 @@ class Vector
      ctx.font = "18px serif";
   ctx.fillText(`${num}`, x, y + 7) ; 
 }
+
    function drawV(vec) 
    {
 ctx.beginPath();
@@ -100,6 +106,7 @@ ctx.arc(vec.x3, vec.y3, 1, 0, Math.PI * 2);
     ctx.lineWidth = 1.5;    
     ctx.strokeStyle = '#ff0000';
     ctx.stroke();
+
     ctx.translate(vec.x4,vec.y4);
     ctx.rotate(countAngleToGorizont(vec));
     ctx.translate(-vec.x4,-vec.y4);
@@ -124,6 +131,20 @@ ctx.arc(vec.x3, vec.y3, 1, 0, Math.PI * 2);
     // ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
 
 }
+  function drawVUn(vec) 
+   {
+ctx.beginPath();
+    ctx.moveTo(vec.x3,vec.y3);
+    ctx.lineTo(vec.x4,vec.y4);
+ ctx.lineWidth = 1.5;    
+    ctx.strokeStyle = '#ff0000';
+    ctx.stroke();
+    // ctx.fillStyle = 'black' ;
+    // ctx.textAlign = "center";
+    // ctx.font = "18px serif";
+    // ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
+}
+
  function drawVP(vec) 
    {
      let mX = (vec.x3 + vec.x4)/2;
@@ -150,6 +171,15 @@ ctx.arc(vec.x3, vec.y3, 1, 0, Math.PI * 2);
     ctx.translate(-mX,-mY);
 }
 
+function drawCircl(graph)
+{
+	ctx.beginPath();
+	ctx.arc(graph.x2, graph.y2, R_OF_OUT_CIRCLE, 0, Math.PI * 2);
+	ctx.lineWidth = 1.5;    
+    ctx.strokeStyle = '#ff0000';
+    ctx.stroke();
+}
+
 function createAndDrawG()
 {
 for (let i = 0; i < G_COUNT; i++)
@@ -159,7 +189,7 @@ for (let i = 0; i < G_COUNT; i++)
 }
 }
 
-function createAndDrawV()
+function createAndDrawV(arrN)
 {
 	let counter = [];
 	for (let i = 0; i < G_COUNT; i++ ){  counter[i] = [];
@@ -184,8 +214,32 @@ if (arrN[i][j] == arrN[j][i] && counter[i][j] == 0) {
 }
 else drawV(vector[countV]);
 countV++;
+if (i == j ){
+ drawCircl(graph[i]);
+}
 
 }
+}
+}
+}
+
+
+
+function createAndDrawVUn(arrN){
+for (let i = 0; i < G_COUNT; i++ )
+{
+	for(let j = 0; j < G_COUNT; j++)
+	{
+
+if(arrN[i][j] == 1)
+{
+vector[countV] = new Vector(graph[i].x,graph[i].y,graph[j].x,graph[j].y,countV)
+ drawVUn(vector[countV]);
+if (i == j ){
+ drawCircl(graph[i]);
+}
+}
+
 }
 }
 }
@@ -202,10 +256,20 @@ function countAngleToGorizont(vector)
 	}
 return newAngle;
 }
-createAndDrawG();
-createAndDrawV();
 
+function createUnAimG(){
+for (let i = 0; i < G_COUNT; i++) {
+for(let j = 0; j < G_COUNT; j++){
+	if(arrUn[i][j] == 1)
+	arrUn[j][i] = 1;
+}
 
+}
+}
 
+ createAndDrawG();
+// createAndDrawV(arrN);
+ createUnAimG();
+ createAndDrawVUn(arrUn);
+console.log(arrUn);
 
-console.log(countAngleToGorizont(vector[2]));
