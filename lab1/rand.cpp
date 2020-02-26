@@ -18,7 +18,7 @@ int main()
     ofstream fout("cppstudio.json"); // создаём объект класса ofstream для записи и связываем его с файлом cppstudio.txt
 
 srand(9521);
-fout << " let arr =  [\n"	;
+fout << "    [\n"	;
 for(int j = 0;j < g;j++){
 	fout << " [ "	;
 
