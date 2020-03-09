@@ -14,34 +14,32 @@ const RADIUS_GR = 23;
 const ELIPSE_WIDTH = 20;
 const R_OF_OUT_CIRCLE = 10;
 
- let arrN =  [
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1 ] ,
-  [ 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0 ] ,
-  [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
-  [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
-  [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  
-  ];
-let arrUn =   [
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1 ] ,
-  [ 0, 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0 ] ,
-  [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
-  [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
-  [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-  [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  
-  ];;
+ let arrN =       [
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ] ,
+   [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  ] ;
+let arrUn =      [
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ] ,
+   [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+   [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  ] ;
 
 
 
@@ -57,7 +55,10 @@ class GraphClass
 		this.y2 = canvas.height / 2 + (RADIUS + R_OF_OUT_CIRCLE + RADIUS_GR) * Math.sin(this.alfa);
 		this.x3 = canvas.width / 2 + (RADIUS + R_OF_OUT_CIRCLE*2 + RADIUS_GR) * Math.cos(this.alfa) ;
 		this.y3 = canvas.height / 2 + (RADIUS + R_OF_OUT_CIRCLE*2 + RADIUS_GR) * Math.sin(this.alfa);
-		
+    this.graphDegree = 0;
+    this.graphInDegree = 0;
+    this.graphOutDegree = 0;
+
 		
 	}
 }
@@ -244,7 +245,6 @@ for (let i = 0; i < G_COUNT; i++)
 
 function createAndDrawV(arrN)
 { 
-  console.log(arrN);
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   createAndDrawG();
 	let counter = [];
@@ -264,7 +264,8 @@ for (let i = 0; i < G_COUNT; i++ )
 if(arrN[i][j] == 1)
 {
 vector[countV] = new Vector(graph[i].x,graph[i].y,graph[j].x,graph[j].y,countV)
-
+graph[i].graphOutDegree++;
+graph[j].graphInDegree++;
 if (arrN[i][j] == arrN[j][i] && counter[i][j] == 0) {
 	drawVP(vector[countV]);
 	counter[j][i]++;
@@ -273,6 +274,7 @@ if (arrN[i][j] == arrN[j][i] && counter[i][j] == 0) {
 else drawV(vector[countV]);
 countV++;
 if (i == j ){
+    graph[i].graphDegree += 2;
  drawCircl(graph[i]);
 }
 
@@ -296,7 +298,10 @@ if(arrUn[i][j] == 1)
 {
 vectorUn[countV] = new Vector(graph[i].x,graph[i].y,graph[j].x,graph[j].y,countV)
  drawVUn(vectorUn[countV]);
+ graph[i].graphDegree++;
+ graph[j].graphDegree++;
 if (i == j ){
+    graph[i].graphDegree += 2;
  drawCircuit(graph[i]);
 }
 }
@@ -329,13 +334,21 @@ for(let j = 0; j < G_COUNT; j++){
 
 function Napr() {
   createAndDrawV(arrN);
+  console.log(' \noriented graph\n ');
+  for(let i of graph){
+    console.log(`graph ${i.num} \t Indegree ${i.graphInDegree } \t Outdegree ${i.graphOutDegree }`);
+  }
 };
 function UnNapr(){
   createAndDrawVUn(arrUn);
+  console.log(' \nunoriented graph\n ');
+  for(let i of graph){
+    console.log(`graph ${i.num} \t degree ${i.graphDegree / 2}`);
+  }
 }
 
 createAndDrawG();
 elemN.onclick = Napr;
 elemUn.onclick = UnNapr;
-//console.log(arrUn);
+console.log(graph);
  
