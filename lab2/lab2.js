@@ -15,18 +15,18 @@ const ELIPSE_WIDTH = 20;
 const R_OF_OUT_CIRCLE = 10;
 
  let arrN =       [
-  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ] ,
-   [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
-   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
-   [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
-   [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  ] ;
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ] ,
+     [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+     [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
+     [ 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+     [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]    ] ;
 let arrUn =      [
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1 ] ,
    [ 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0 ] ,
@@ -40,7 +40,20 @@ let arrUn =      [
    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
    [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  ] ;
-
+// let arrUn =      [
+//     [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+//      [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ] ,
+//      [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ]  ] ;
+  
 
 
 class GraphClass
@@ -58,7 +71,7 @@ class GraphClass
     this.graphDegree = 0;
     this.graphInDegree = 0;
     this.graphOutDegree = 0;
-
+    
 		
 	}
 }
@@ -154,6 +167,7 @@ ctx.arc(vec.x3, vec.y3, 1, 0, Math.PI * 2);
     // ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
 
 }
+
   function drawVUn(vec) 
    {
 ctx.beginPath();
@@ -167,7 +181,7 @@ ctx.beginPath();
     // ctx.font = "18px serif";
     // ctx.fillText(`${vec.num}`, (vec.x1 + vec.x2) / 2, (vec.y1 + vec.y2) / 2) ; 
 }
-
+// Vectors that are in both ways
  function drawVP(vec) 
    {
      let mX = (vec.x3 + vec.x4)/2;
@@ -193,15 +207,18 @@ ctx.beginPath();
     ctx.rotate(-countAngleToGorizont(vec));
     ctx.translate(-mX,-mY);
 }
-
+//draw circuit in graphs/*
 function drawCircl(gr)
 {
 	ctx.beginPath();
 	ctx.arc(gr.x2, gr.y2, R_OF_OUT_CIRCLE, 0, Math.PI * 2);
 	ctx.lineWidth = 1.5;    
-    ctx.strokeStyle = '#ff0000';
+    ctx.strokeStyle = '#ffff00';
     ctx.stroke();
-  let vec = new Vector(graph[gr.num].x,graph[gr.num].y,graph[gr.num-1].x,graph[gr.num-1].y,50)
+    // debug for last number of graph
+  let vec;
+    if(gr.num == G_COUNT ) vec = new Vector(graph[0].x,graph[0].y,graph[gr.num-1].x,graph[gr.num-1].y,50)
+else vec = new Vector(graph[gr.num].x,graph[gr.num].y,graph[gr.num-1].x,graph[gr.num-1].y,50)
 
        ctx.translate(gr.x3,gr.y3);
     ctx.rotate(countAngleToGorizont(vec));
@@ -283,9 +300,8 @@ if (i == j ){
 }
 }
 
-
-
-function createAndDrawVUn(arrUn){
+function createAndDrawVUn(arrUn)
+{
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   createAndDrawG();
   createUnAimG();
@@ -299,7 +315,7 @@ if(arrUn[i][j] == 1)
 vectorUn[countV] = new Vector(graph[i].x,graph[i].y,graph[j].x,graph[j].y,countV)
  drawVUn(vectorUn[countV]);
  graph[i].graphDegree++;
- graph[j].graphDegree++;
+
 if (i == j ){
     graph[i].graphDegree += 2;
  drawCircuit(graph[i]);
@@ -323,14 +339,83 @@ function countAngleToGorizont(vector)
 return newAngle;
 }
 
-function createUnAimG(){
-for (let i = 0; i < G_COUNT; i++) {
-for(let j = 0; j < G_COUNT; j++){
+function createUnAimG()
+{
+for (let i = 0; i < G_COUNT; i++)
+ {
+for(let j = 0; j < G_COUNT; j++)
+{
 	if(arrUn[i][j] == 1)
 	arrUn[j][i] = 1;
 }
 }
 }
+
+function chekIfOdnorOreiented(graph)
+{
+    let iN;
+    let out;
+    iN = graph[1].graphInDegree ;
+    out = graph[1].graphOutDegree ;
+for(let i of graph ){
+    if(i.graphInDegree !=  iN || i.graphOutDegree != out){
+        return false;
+    }}
+    return true;
+}
+
+function chekIfOdnorUnoriented(graph)
+{
+    let a;
+    a = graph[1].graphDegree ;
+for(let i of graph ){
+    if(i.graphDegree !=  a ){
+        return false;
+    }}
+    return true;
+}
+function chekIfSoloEdgeUn(graph)
+{
+    let solo =[];
+for(let i of graph){
+    if( i.graphDegree == 1) solo.push(i.num);
+}
+return solo;
+}
+
+function chekIfSoloEdge(graph)
+{
+    let solo =[];
+    let a ,b;
+for(let i of graph){
+    a = (i.graphInDegree == 1 && i.graphOutDegree == 0);
+    b = (i.graphInDegree == 0 && i.graphOutDegree == 1);
+    if( a || b ) solo.push(i.num) ;
+} 
+return solo;
+}
+
+function chekIfIzolatedOr(graph)
+{
+    let izol =[];
+    let a ,b;
+for(let i of graph){
+    a = (i.graphInDegree == 0 && i.graphOutDegree == 0);
+    b = (i.graphInDegree == 0 && i.graphOutDegree == 0);
+    if( a || b ) izol.push(i.num) ;
+} 
+return izol;
+}
+function chekIfIzolatedUnor(graph)
+{
+    let izol =[];
+for(let i of graph)
+{
+      if( i.graphDegree == 0) izol.push(i.num) ;
+} 
+return izol;
+}
+
 
 function Napr() {
   createAndDrawV(arrN);
@@ -338,17 +423,33 @@ function Napr() {
   for(let i of graph){
     console.log(`graph ${i.num} \t Indegree ${i.graphInDegree } \t Outdegree ${i.graphOutDegree }`);
   }
+  if(chekIfOdnorOreiented(graph)) console.log(`Орієнтований граф однорідний \n In : ${graph[0].graphInDegree}
+Out : ${graph[0].graphOutDegree} `);
+ 
+else console.log('орієнований граф неоднорідний');
+
+if(chekIfSoloEdge(graph).length > 0) console.log(`висячі вершини : ${chekIfSoloEdge(graph)}`);
+if(chekIfIzolatedOr(graph).length > 0) console.log(`ізольовані вершини : ${chekIfIzolatedOr(graph)}`);
+
 };
 function UnNapr(){
   createAndDrawVUn(arrUn);
   console.log(' \nunoriented graph\n ');
   for(let i of graph){
-    console.log(`graph ${i.num} \t degree ${i.graphDegree / 2}`);
+    console.log(`graph ${i.num} \t degree ${i.graphDegree }`);
   }
+  if(chekIfOdnorUnoriented(graph)) console.log(`Неорієнтований граф однорідний степінь: ${graph[0].graphDegree} `);
+ 
+  else console.log('неорієнований граф неоднорідний');
+ 
+ 
+  if(chekIfSoloEdgeUn(graph).length > 0) console.log(`висячі вершини : ${chekIfSoloEdgeUn(graph)}`);
+  if(chekIfIzolatedUnor(graph).length > 0) console.log(`ізольовані вершини : ${chekIfIzolatedUnor(graph)}`);
+ 
 }
+
 
 createAndDrawG();
 elemN.onclick = Napr;
 elemUn.onclick = UnNapr;
-console.log(graph);
  
