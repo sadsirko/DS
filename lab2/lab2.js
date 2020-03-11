@@ -435,7 +435,8 @@ if(chekIfIzolatedOr(graph).length > 0) console.log(`ізольовані вер�
 function UnNapr(){
   createAndDrawVUn(arrUn);
   console.log(' \nunoriented graph\n ');
-  for(let i of graph){
+  for(let i of graph)
+  {
     console.log(`graph ${i.num} \t degree ${i.graphDegree }`);
   }
   if(chekIfOdnorUnoriented(graph)) console.log(`Неорієнтований граф однорідний степінь: ${graph[0].graphDegree} `);
@@ -452,4 +453,3 @@ function UnNapr(){
 createAndDrawG();
 elemN.onclick = Napr;
 elemUn.onclick = UnNapr;
- 
