@@ -569,7 +569,7 @@ function findTwoStepWays(arr)
   
   powArray(arrPowTwo,arr,G_COUNT,2);
   console.table(arrPowTwo);
-  console.table(arrN);
+  console.log("КВАДРАТ МАТРИЦІ ")
   console.log('Усі шляхи довжиною 2 :')
   arrPowTwo.forEach((element, index1, array) => { 
     element.forEach((element2,index2, array2) => {
@@ -603,6 +603,9 @@ function findThreeStepWays(arr)
   let arrPowThree = [];
   powArray(arrPowTwo,arr,G_COUNT,2);
   powArray(arrPowThree,arr,G_COUNT,3);
+  console.log("КУБ МАТРИЦІ ");
+  console.table(arrPowThree);
+
 
   arrPowThree.forEach((element, index1, array) => { 
     element.forEach((element2,index2, array2) => {
@@ -798,6 +801,9 @@ function makeGraphConds()
 
 createAndDrawG(6);
   createAndDrawV(createMatrixCondens(arrN),6);
+  console.log("Матриця графа конденсації : ");
+  console.table(createMatrixCondens(arrN));
+ 
 
 }
 
@@ -806,7 +812,8 @@ createAndDrawG(6);
 //lookForStrongComp(MatrixOfStrongLink(arrN));
 //console.log(someObj["1"]);
 
-console.table(createMatrixCondens(arrN));
+//console.table(createMatrixCondens(arrN));
+
 copyArray(arrN,arrUn);
 createAndDrawG(G_COUNT);
 elemN.onclick = Napr;
