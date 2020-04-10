@@ -1,4 +1,6 @@
 'use strict';
+
+
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 const elemN = document.getElementById('elemN');
@@ -7,6 +9,8 @@ const elemMatrix = document.getElementById('elemmatrix');
 const elemTwoStep = document.getElementById('elemtwostep');
 const elemThreeStep = document.getElementById('elemthreestep');
 const elemDos = document.getElementById('elemDos');
+const elemLink = document.getElementById('elemLink');
+const elemSortLink = document.getElementById('elemSortLink');
 
 const G_COUNT = 12;
 let countV = 0;
@@ -31,14 +35,21 @@ const R_OF_OUT_CIRCLE = 10;
    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ] ,
    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ] ,
    [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ]  ]; 
+// let arrN = [
+//   [0,1,0,1,0],
+//   [0,0,0,0,1],
+//   [1,0,0,0,0],
+//   [0,0,1,0,1],
+//   [0,1,0,0,0]
+// ]
 let arrUn = [];
-let arrPowThree = [];
+
 
 class GraphClass
  {
-	constructor(num)
+	constructor(num,G_count)
 	{
-		this.alfa = 2 * Math.PI / G_COUNT * (num - 1);
+		this.alfa = 2 * Math.PI / G_count * (num - 1);
 		this.x = canvas.width / 2 + RADIUS * Math.cos(this.alfa);
 		this.y = canvas.height / 2 + RADIUS * Math.sin(this.alfa);
 		this.num = num;
@@ -293,31 +304,32 @@ function drawCircuit(graph)
     ctx.stroke();
 }
 
-function createAndDrawG()
+function createAndDrawG(numberOfVertex)
 {
-for (let i = 0; i < G_COUNT; i++)
+for (let i = 0; i < numberOfVertex; i++)
 {
- graph[ i ] = new GraphClass( i + 1);
+ graph[ i ] = new GraphClass( i ,numberOfVertex);
  drawG(graph[i].x, graph[i].y, RADIUS_GR, graph[i].num);
 }
 }
 
-function createAndDrawV(arrN)
+function createAndDrawV(arrN,G_count = G_COUNT)
 { 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  createAndDrawG();
+  createAndDrawG(G_count);
+
 	let counter = [];
-	for (let i = 0; i < G_COUNT; i++ ){ 
+	for (let i = 0; i < G_count; i++ ){ 
 	 counter[i] = [];
-	for(let j = 0; j < G_COUNT; j++){
+	for(let j = 0; j < G_count; j++){
     counter[i][j] = 0;
 }
 }
 
 
-for (let i = 0; i < G_COUNT; i++ )
+for (let i = 0; i < G_count; i++ )
 {
-	for(let j = 0; j < G_COUNT; j++)
+	for(let j = 0; j < G_count; j++)
 	{
 	
 if(arrN[i][j] == 1)
@@ -345,7 +357,7 @@ if (i == j ){
 function createAndDrawVUn(arrUn)
 {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  createAndDrawG();
+  createAndDrawG(G_COUNT);
   createUnAimG();
 for (let i = 0; i < G_COUNT; i++ )
 {
@@ -375,8 +387,7 @@ function countAngleToGorizont(vector)
 	 newAngle = Math.acos((vector.x * 1 + vector.y * 0)/(vector.length() * 1));
 	}
 	else {
-	 newAngle = Math.acos(((vector.x1 - vector.x2) )/(vector.length())) + Math.PI;
-		
+	 newAngle = Math.acos(((vector.x1 - vector.x2) )/(vector.length())) + Math.PI;	
 	}
 return newAngle;
 }
@@ -492,6 +503,7 @@ function createArrDos(arr)
 
 function Napr() 
 {
+  createAndDrawG(G_COUNT);
   createAndDrawV(arrN);
   console.log(' \noriented graph\n ');
   for(let i of graph){
@@ -509,6 +521,7 @@ if(chekIfIzolatedOr(graph).length > 0) console.log(`ізольовані вер�
 
 function UnNapr()
 {
+  createAndDrawG(G_COUNT);
   createAndDrawVUn(arrUn);
   console.log(' \nunoriented graph\n ');
   for(let i of graph)
@@ -576,7 +589,7 @@ function findTwoStepWays(arr)
       if(arr[i][index2] == 1)
       {
         if (arr[index1][i]) {
-        console.log(`${index1 + 1} - ${i + 1} - ${index2 + 1}`)
+        console.log(`${index1 } - ${i } - ${index2}`)
         }
       }
     }
@@ -613,7 +626,7 @@ function findThreeStepWays(arr)
             if(arr[j][i] == 1)
             {
               if (arr[index1][j]) {
-              console.log(`${index1 + 1} - ${j + 1} - ${i + 1} - ${index2 + 1}`)
+              console.log(`${index1} - ${j } - ${i } - ${index2 }`)
               }
             }
           }
@@ -637,82 +650,99 @@ function MatrixOfStrongLink(arr)
   return link;
 }
 
-// function lookForStrongComp(arr)
-// {
-//   let list = [];
-//   let temp = []; 
-//   let counter = 0 ;
-//   let resp = [];
-//   createArray(resp,G_COUNT,2)
-//   for (let i = 0; i < G_COUNT; i++) 
-//   {
-//     for (let j = 0; j < G_COUNT; j++) 
-//     {
-//       temp.push(arr[j][i]);  
-//     } 
-//     list[i] = temp.join("");
-//     temp = [];
-//   }
-
-//   for (let i = 0; i < G_COUNT; i++) 
-//   {
-    
-//     for (let j = 0; j < G_COUNT; j++) 
-//     { counter
-//     if (i != j && list[i].includes(list[j])) 
-//     {
-//       resp[counter]list[i] + " "
-//     }
-//     } 
-//     }
-
-//    console.log(counter);
-// }
-
-
-function components(arr) 
+function lookForStrongComp(arr)
 {
-    const newMatrix = [ ];
-    createArray(newMatrix);
-    copyArray(newMatrix, arr); 
-    const components = [];
+  let list = [];
+  let temp = []; 
+  let res = {};
+  let idx = {};
+  for (let i = 0; i < G_COUNT; i++) 
+  {
+    for (let j = 0; j < G_COUNT; j++) 
+    {
+      temp.push(arr[j][i]);  
+    } 
+    list[i] = temp.join("");
+    temp = [];
+  }
+  list.forEach(element => {
+    res[element] = [];
+    idx[element] = list.indexOf(element);;
+  });
 
-    while (true) {
-        if (newMatrix.some(element => Array.isArray(element))) {
-            components.push(findComponents(newMatrix))
-        } else {
-            break;
-        }
+  list.forEach(element => {
+    
+    res[element].push(idx[element]);
+    idx[element] = list.indexOf(element,idx[element] + 1);
+  
+  });
+    return(res);
+  }
+
+  function returnStrongLinks(arr)
+{
+  let local = [];
+  let compare ;
+  let counter = 0;
+  let list = lookForStrongComp(MatrixOfStrongLink(arrN));
+  let res = {};
+  createArray(local, arr.length, 1);
+  local.fill("0");
+  compare = local.join("");
+  
+   for (let i in lookForStrongComp(MatrixOfStrongLink(arrN))) {
+    if (i == compare) 
+    {
+      list[i].forEach(element =>{ res[`K${counter}`] = [element] ; 
+        counter++}) 
     }
+    else 
+    {
+      res[`K${counter}`] = list[i];
+      counter++
+    };
+    // console.log(lookForStrongComp(MatrixOfStrongLink(arrN)).valueOf(i));    
+   }
+   return res;
 
-    return components
 }
 
-function findComponents(matrix)
- {
-    const components = [];
-    let start;
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i]) {
-            start = i;
-            break;
+function createMatrixCondens(arr)
+{
+  let obj = returnStrongLinks(arr);
+  let MatrixCondens = [];
+  let length = Object.keys(obj).length;
+  let counter;
+  createArray(MatrixCondens, length, length);
+  for(let i = 0; i < length; i++)
+  {
+      obj[`K${i}`].forEach(element => {
+      for(let j = 0;j < G_COUNT; j++)
+      {
+        if(arr[element][j] == 1)
+        {
+          for(let k = 0; k < length; k++)
+           {
+            obj[`K${k}`].forEach(element2 => {
+              
+                if(element2 == j)
+                {
+                MatrixCondens[i][k] = 1;
+              }
+              
+            })
+          }
         }
-    }
-
-    for (let i = 0; i < matrix.length; i++) {
-        if (matrix[i]) {
-            if (matrix[start].join('') === matrix[i].join('')) {
-                components.push(i + 1)
-            }
-        }
-    }
-
-    for (let i = 0; i < components.length; i++) {
-        delete matrix[components[i] - 1];
-    }
-
-    return components;
-}
+      }
+    })   
+  }
+  for(let o = 0; o < MatrixCondens.length; o++){
+    for(let n = 0; n < MatrixCondens.length; n++){
+      if(o == n)MatrixCondens[o][n] = 0;
+    } 
+  }
+  return MatrixCondens;
+} 
 
 function writeArr()
 {
@@ -731,22 +761,54 @@ function writeThreeStep()
  
 function writeDos()
 {
+  console.log("\nМАТРИЦЯ ДОСТЯЖНОСТІ : ");
  console.table(createArrDos(arrN));
 }
 
 function writeLink()
 {
+  console.log("\nМАТРИЦЯ СИЛЬНОЇ ЗВ'ЯЗНОСТІ: ");
  console.table(MatrixOfStrongLink(arrN));
 }
 
+function writeStrongLinks()
+{
+  console.log(" \nКОМПОНЕНТИ СИЛЬНОЇ ЗВ'ЯЗНОСТІ :");
+  let local = [];
+  let compare ;
+  let counter = 0;
+  let list = lookForStrongComp(MatrixOfStrongLink(arrN));
+  createArray(local, G_COUNT, 1);
+  local.fill("0");
+  compare = local.join("");
+  
+   for (let i in lookForStrongComp(MatrixOfStrongLink(arrN))) {
+    if (i == compare) {list[i].forEach(element =>{console.log(`K ${counter} : ${element}`  ); counter++}) }
+    else {console.log(`K ${counter} : ${list[i]}`);counter++};
+    
+    // console.log(lookForStrongComp(MatrixOfStrongLink(arrN)).valueOf(i));    
+   }
+
+}
+
+function makeGraphConds()
+{
+
+   ctx.clearRect(0,0,canvas.width,canvas.height);
+
+createAndDrawG(6);
+  createAndDrawV(createMatrixCondens(arrN),6);
+
+}
 
 
 //FindTwoStepWays(arrN);
 //lookForStrongComp(MatrixOfStrongLink(arrN));
-console.table(components(MatrixOfStrongLink));
+//console.log(someObj["1"]);
+
+console.table(createMatrixCondens(arrN));
 copyArray(arrN,arrUn);
-writeLink();
-createAndDrawG();
+createAndDrawG(G_COUNT);
 elemN.onclick = Napr;
 elemUn.onclick = UnNapr;
 elemMatrix.onclick = writeArr;
@@ -754,3 +816,5 @@ elemTwoStep.onclick = writeTwoStep;
 elemThreeStep.onclick = writeThreeStep;
 elemDos.onclick = writeDos;
 elemLink.onclick = writeLink;
+elemSortLink.onclick = writeStrongLinks;
+elemCreateCondGr.onclick = makeGraphConds;
