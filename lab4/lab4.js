@@ -20,9 +20,9 @@ let countV = 0;
 let graph = [];
 let vector = [];
 let vectorUn = [];
-const RADIUS = 220;
-const RADIUS_GR = 23;
-const ELIPSE_WIDTH = 20;
+const RADIUS = 230;
+const RADIUS_GR = 26;
+const ELIPSE_WIDTH = 15;
 const R_OF_OUT_CIRCLE = 10;
 
  let arrN =                [
@@ -819,7 +819,7 @@ createAndDrawG(6);
 
 }
 
-function BFS(arr,first = 0,next,numerable = false)
+function BFS(arr,first = 0,next,numerable = false,arrBFS = [],bfs = [])  
 {
   function highlightG(x, y,r,num)
     {
@@ -873,11 +873,10 @@ function highlightV(vec)
        ctx.translate(vec.x4,vec.y4);
       ctx.rotate(-countAngleToGorizont(vec));
       ctx.translate(-vec.x4,-vec.y4);
+      delCycle(arr);
 }
-  delCycle(arr);
-  let whileNext = next;
+  createArray(arrBFS);
   let queue = [];
-  let bfs = [];
   let vertex,counter;
   let last;
   let edge = [];
@@ -893,6 +892,7 @@ function highlightV(vec)
     {
       if(arr[vertex][i] && bfs[i] == 0)
       {
+        arrBFS[vertex][i] = 1;
         edge[counter] = new Vector(graph[vertex].x, graph[vertex].y, graph[i].x, graph[i].y, counter);
       highlightV(edge[counter]);
      
@@ -927,7 +927,11 @@ function workWithBFS()
 
 function justBFS()
 {
-  BFS(arrN,0,G_COUNT,true);
+  let bfs = [];
+  let arrBFS = [];
+  BFS(arrN,0,G_COUNT,true,arrBFS,bfs);
+  console.table(arrBFS);
+  console.table(bfs);
 }
 
 
