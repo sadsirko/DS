@@ -21,7 +21,7 @@ let graph = [];
 let vector = [];
 let vectorUn = [];
 const RADIUS = 230;
-const RADIUS_GR = 26;
+const RADIUS_GR = 30;
 const ELIPSE_WIDTH = 15;
 const R_OF_OUT_CIRCLE = 10;
 
@@ -823,14 +823,7 @@ function BFS(arr,first = 0,next,numerable = false,arrBFS = [],bfs = [])
 {
   function highlightG(x, y,r,num)
     {
-   if(numerable)
-   {
-        ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2, false);
-     ctx.fillStyle = 'black' ;
-      ctx.fill();
-      ctx.closePath();
-}
+   
   ctx.beginPath();
   ctx.arc(x, y, r, 0, Math.PI * 2, false);
       ctx.lineWidth = 3;
@@ -839,10 +832,10 @@ function BFS(arr,first = 0,next,numerable = false,arrBFS = [],bfs = [])
   ctx.closePath();
   if(numerable)
   {
-  ctx.fillStyle = 'white' ;
+  ctx.fillStyle = 'blue' ;
   ctx.textAlign = "center";
-   ctx.font = "18px serif";
-ctx.fillText(`${num}`, x, y + 7) ; 
+   ctx.font = "12px serif";
+ctx.fillText(`${num}`, x + 7, y + 20) ; 
 } 
 }
 function highlightV(vec) 
