@@ -1,0 +1,15 @@
+
+
+          * { padding: 0;
+             margin: 0;
+            
+            }
+            #elemClear{
+              font-size: 14pt
+            }
+          canvas {
+            background: #aee;
+            display: block;
+            margin: 0 auto;
+            position: static;
+             } 
