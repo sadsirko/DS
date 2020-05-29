@@ -27,6 +27,7 @@ const RADIUS_GR = 30;
 const ELIPSE_WIDTH = 15;
 const R_OF_OUT_CIRCLE = 10;
 let arrUn = [];
-let next = nextD = 0;
+let next = 0;
+let  nextD = 1;
 let iteratePrim = 1;
 

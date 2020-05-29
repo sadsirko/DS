@@ -515,7 +515,7 @@ const dijkstra = (weight,first,nextD) =>
   let tmp = vecCount = counter = 0;
   let tmpNow = first;
   let prevWeight = 0;
-  let a,b;
+  let a,b,d;
   let fromTo = [];
   let prevPos = 0;
   let locArr = [];
@@ -527,39 +527,50 @@ const dijkstra = (weight,first,nextD) =>
   tmpNow = vertexArr[vertexArr.length - 1];
 
 
-    for(let i = first + 1; i < G_COUNT; i++)
+    for(let i = first + 1; i < nextD + 1; i++)
     {
      for(let j = 0; j < G_COUNT; j++)
      {
       tmp = weight[tmpNow][j];
       a = (tmp + prevWeight < dextraArr[i - 1][j ]);
       b = (counter <= nextD);
-      if(arrUn[tmpNow][j] && a && b)
+      d = (vertexArr.includes(j))
+      if(b ){
+      if(arrUn[tmpNow][j] && a)
       {
        dextraArr[i][j] = tmp + prevWeight;
        fromTo[j] = tmpNow; 
       // vector[vecCount] = new Vector(graph[tmpNow].x,graph[tmpNow].y,graph[j].x,graph[j].y,vecCount);
       // highlightV(vector[vecCount]);
-        vecCount++;
-       
-        
+       // vecCount++;
+       drawCircuit(graph[j], "red", (dextraArr[i][j] == Infinity)? '∞' :dextraArr[i][j]);
+        if(d){
+        drawCircuit(graph[j], "green", (dextraArr[i][j] == Infinity)? '∞' :dextraArr[i][j]);
+        }
       }
-      else dextraArr[i][j] = dextraArr[i - 1][j]
+      else {
+      
+        dextraArr[i][j] = dextraArr[i - 1][j];
+        drawCircuit(graph[j], "yellow",( dextraArr[i][j] == Infinity)? '∞' :dextraArr[i][j]);
+       
+        if(d )
+        {
+        drawCircuit(graph[j], "blue", (dextraArr[i][j] == Infinity)? '∞' :dextraArr[i][j]);
+        }
+
+      }}
+     }
+     for(let i = 0; i < G_COUNT;i++)
+     {
+      
+      // вписать как-то тот же tmpNow
      }
      counter++;
      prevWeight = min(dextraArr[i],vertexArr).result;
      prevPos = min(dextraArr[i],vertexArr).pos;
      vertexArr.push(min(dextraArr[i],vertexArr).pos);
      tmpNow = vertexArr[vertexArr.length - 1];
-     for(let i = 0; i < G_COUNT;i++)
-     {
-       str = dextraArr[G_COUNT - 1][i];
-       if (str != Infinity) str = dextraArr[G_COUNT - 1][i];
-       else str = '∞' ;
-      drawCircuit(graph[i], "green", str);
-      drawCircuit(graph[tmpNow], "red", str);
-      // вписать как-то тот же tmpNow
-     }
+    
 
   }
  giveWays(locArr, fromTo,dextraArr);

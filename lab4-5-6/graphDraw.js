@@ -163,7 +163,10 @@ function drawCircuit(graph,color = "",num = "")
 
    case "yellow":
    ctx.strokeStyle = '#ffff00';break;  
-    
+
+   case  "blue":
+    ctx.strokeStyle = '#0033cc';break;  
+
    default :
    ctx.strokeStyle = '#ff0000';break;  
  }
